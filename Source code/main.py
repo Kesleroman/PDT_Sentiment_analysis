@@ -3,6 +3,7 @@
 
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from connection.connect import connect
+import task1_3
 
 
 def sentiment_test():
@@ -19,4 +20,6 @@ def print_polarity(text, analyzer):
 if __name__ == '__main__':
     sentiment_test()
     connection = connect('connection/database_config.ini')
+    task1_3.create_conspiracy_table(connection)
+    connection.close()
 
