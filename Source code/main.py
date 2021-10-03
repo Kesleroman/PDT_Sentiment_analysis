@@ -17,9 +17,14 @@ def print_polarity(text, analyzer):
     print(result)
 
 
-if __name__ == '__main__':
-    sentiment_test()
-    connection = connect('connection/database_config.ini')
+def execute_task1_3(connection):
     task1_3.create_conspiracy_table(connection)
+    task1_3.populate_conspiracy_theories_table(connection)
+    task1_3.populate_tweet_conspiracy_theories_table(connection)
+
+
+if __name__ == '__main__':
+    connection = connect('connection/database_config.ini')
+    # execute_task1_3(connection)
     connection.close()
 
