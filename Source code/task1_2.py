@@ -58,6 +58,14 @@ def _calculate_sentiment_and_insert(limit, offset):
                     cur.execute(SQL_SELECT_CONTENT, (row[0],))
                     content = cur.fetchone()[0]
 
+                print(hashtag_pattern.match(content))
+                print(emoji_pattern.match(content))
+                print(mention_pattern.match(content))
+
+                content = hashtag_pattern.sub('', content)
+                content = emoji_pattern.sub('', content)
+                content = mention_pattern.sub('', content)
+
                 result = analyzer.polarity_scores(content)
                 cursor.execute(SQL_UPDATE, (result['neg'], result['neu'], result['pos'], result['compound'], row[0]))
 
