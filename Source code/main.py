@@ -1,9 +1,7 @@
-# import nltk
-# nltk.download('vader_lexicon')
-
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from connection.connect import connect
 import task1_3
+import task1_2
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
 def sentiment_test():
@@ -23,8 +21,14 @@ def execute_task1_3(connection):
     task1_3.populate_tweet_conspiracy_theories_table(connection)
 
 
+def execute_task1_2(connection):
+    task1_2.populate_tweets_table_with_sentiments(connection)
+
+
 if __name__ == '__main__':
     connection = connect('connection/database_config.ini')
     # execute_task1_3(connection)
+    execute_task1_2(connection)
+    # sentiment_test()
     connection.close()
 
