@@ -4,11 +4,11 @@ import re
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from multiprocessing import Process
 from connection.connect import connect
+import emoji
 
-NUM_PROCESSES = 4
+NUM_PROCESSES = 3
 hashtag_pattern = re.compile(r'#\w+\b')
 mention_pattern = re.compile(r'@\w+\b')
-emoji_pattern = re.compile(r'&\w+;')
 
 
 def populate_tweets_table_with_sentiments(connection):
@@ -43,8 +43,6 @@ def _calculate_sentiment_and_insert(limit, offset):
 
     SQL_UPDATE = "UPDATE tweets SET neg = %s, neu = %s, pos = %s, compound = %s WHERE id = %s;"
 
-    print(limit, offset)
-
     analyzer = SentimentIntensityAnalyzer()
     connection = connect('connection/database_config.ini')
 
@@ -58,12 +56,8 @@ def _calculate_sentiment_and_insert(limit, offset):
                     cur.execute(SQL_SELECT_CONTENT, (row[0],))
                     content = cur.fetchone()[0]
 
-                print(hashtag_pattern.match(content))
-                print(emoji_pattern.match(content))
-                print(mention_pattern.match(content))
-
                 content = hashtag_pattern.sub('', content)
-                content = emoji_pattern.sub('', content)
+                content = emoji.replace_emoji(content)
                 content = mention_pattern.sub('', content)
 
                 result = analyzer.polarity_scores(content)
