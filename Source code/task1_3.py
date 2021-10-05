@@ -1,5 +1,4 @@
 from psycopg2.extras import execute_values
-from psycopg2.extras import execute_batch
 from psycopg2.errors import UniqueViolation
 from multiprocessing import Process
 from connection.connect import connect
@@ -20,8 +19,6 @@ FLATEARTH = 'Flat Earth'
 ILLUMINATI = 'Illuminati'
 REPTILIANS = 'Reptilian conspiracy theory'
 
-# theories_hashtags = ['deepstatevirus', QANON, WORLDORDER, VIRUSESCAPED, GLOBALWARMING, MICROCHIPPING,
-#             _5G, MOONLANDING, _911, PIZZAGATE, CHEMTRAILS, FLATEARTH, ILLUMINATI, REPTILIANS]
 
 conspiracy_theories_dict = {
     'deepstatevirus': DEEPSTATE,
