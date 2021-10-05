@@ -1,4 +1,5 @@
 from connection.connect import connect
+import task1_6
 import task1_5
 import task1_3
 import task1_2
@@ -31,11 +32,17 @@ def execute_task1_5():
     task1_5.populate_active_conspirators_table(connection)
 
 
+def execute_task1_6():
+    task1_6.create_table(connection)
+    task1_6.populate_table(connection)
+
+
 if __name__ == '__main__':
     connection = connect('connection/database_config.ini')
     # execute_task1_3()
     # execute_task1_2()
     # execute_task1_5()
+    # execute_task1_6()
     # sentiment_test()
     connection.close()
 
