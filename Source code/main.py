@@ -1,6 +1,7 @@
 from connection.connect import connect
 import task1_6
 import task1_5
+import task1_4
 import task1_3
 import task1_2
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -27,6 +28,11 @@ def execute_task1_2():
     task1_2.populate_tweets_table_with_sentiments(connection)
 
 
+def execute_task1_4():
+    task1_4.create_table(connection)
+    task1_4.populate_conspiracy_tweets_weekly_table(connection)
+
+
 def execute_task1_5():
     task1_5.create_table(connection)
     task1_5.populate_active_conspirators_table(connection)
@@ -39,8 +45,9 @@ def execute_task1_6():
 
 if __name__ == '__main__':
     connection = connect('connection/database_config.ini')
-    # execute_task1_3()
     # execute_task1_2()
+    # execute_task1_3()
+    # execute_task1_4()
     # execute_task1_5()
     # execute_task1_6()
     # sentiment_test()
